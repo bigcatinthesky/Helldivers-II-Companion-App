@@ -1,1 +1,2 @@
 UML Diagram: https://drive.google.com/file/d/1hJVHGW1H7kLUKz46sRLO9UR4BfJtd_0B/view?usp=sharing
+Work Plan: https://docs.google.com/document/d/1QHg7yK6uIg84DsU6axO5V-LQ_gR_A-7ZGynzVCzbzEM/edit?usp=sharing
