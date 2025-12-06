@@ -13,8 +13,8 @@ class TestPlanet(unittest.TestCase):
             test_planet_attributes_json = planets_json["0"]
         test_planet = Planet(test_planet_stats_json, test_planet_attributes_json)
         """testing attributes"""
-        self.assertEqual("Super Earth", test_planet._planet_attributes["name"])
-        self.assertEqual("Sol", test_planet._planet_attributes["sector"])
+        self.assertEqual("Super Earth", test_planet.get_planet_attributes()["name"])
+        self.assertEqual("Sol", test_planet.get_planet_attributes()["sector"])
         """testing base stats"""
         self.assertEqual(16553678, test_planet._planet_stats["missions won"])
         self.assertEqual(51840209730, test_planet._planet_stats["mission time"])

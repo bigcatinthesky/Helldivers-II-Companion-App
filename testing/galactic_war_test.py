@@ -5,7 +5,7 @@ from galactic_war import GalacticWar
 class TestGalacticWar(unittest.TestCase):
 
     def test_galactic_war(self):
-        with open("test.json", "r") as galactic_war_file:
+        with open("../Final Project/testing/test.json", "r") as galactic_war_file:
             galactic_war_json = json.load(galactic_war_file)
         with open("planets.json", "r") as planets_file:
             planets_json = json.load(planets_file)
@@ -69,13 +69,9 @@ class TestGalacticWar(unittest.TestCase):
             planets.append(i)
         self.assertEqual(planets, test_galactic_war.get_planetary_list())
 
-        """planet search test"""
-        self.assertEqual(test_galactic_war._planets_list[0], test_galactic_war.search_planet_by_index(0))
-        planets_with_new_in_name = [planets[4], planets[20], planets[93]]
-        self.assertEqual(planets_with_new_in_name, test_galactic_war.search_planet_by_attribute("New"))
-        planets_with_squidward_in_name = []
-        self.assertEqual(planets_with_squidward_in_name, test_galactic_war.search_planet_by_attribute("squidward"))
-        self.assertEqual(0, test_galactic_war.get_planet_index(planets[0]))
+        """planet search sort sector test"""
+        self.assertEqual(test_galactic_war._planets_list[0], test_galactic_war.planet_search_by_index(0))
+        self.assertEqual(test_galactic_war._planets_list[100], test_galactic_war.planet_search_by_index(100))
         null_planet = None
         with self.assertRaises(ValueError):
             test_galactic_war.get_planet_index(null_planet)

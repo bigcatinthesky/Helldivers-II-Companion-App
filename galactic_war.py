@@ -1,3 +1,4 @@
+
 from planet import Planet
 
 class GalacticWar:
@@ -15,10 +16,10 @@ class GalacticWar:
             "friendly fires": json_galaxy_stats_dict["galaxy_stats"]["friendlies"]
         }
         self._planets_list = []
-
-
+        self._sectors =[]
         planet_attributes = []
         planet_stats = []
+
         for i in json_planets_dict:
             planet_attributes.append(json_planets_dict[i])
         for i in json_galaxy_stats_dict["planets_stats"]:
@@ -29,10 +30,14 @@ class GalacticWar:
             while stats_index != len(planet_stats):
                 if attributes_index == planet_stats[stats_index]["planetIndex"]:
                     new_planet = Planet(planet_stats[stats_index], planet_attributes[attributes_index])
+                    self.add_sector(new_planet)
                     self._planets_list.append(new_planet)
                 stats_index += 1
             attributes_index += 1
 
+    def add_sector(self, planet):
+        if planet.get_planet_attributes()["sector"] not in self._sectors:
+            self._sectors.append(planet)
 
     def format_galaxy_stats(self, helldiver_stats, mission_stats):
         """:returns: a readable string of all galaxy statistics"""
@@ -74,9 +79,9 @@ class GalacticWar:
         """:returns: a readable list of all planet names and sectors"""
         return self._planets_list
 
-    def get_planet_count(self):
-        """:returns: the number of planets in the galaxy"""
-        return len(self._planets_list)
+    def get_sectors(self):
+        """:returns: a list of all unique sectors"""
+        return self._sectors
 
     def get_planet_index(self, planet):
         """:returns: the index of a given planet"""
@@ -140,30 +145,28 @@ class GalacticWar:
         }
         return mission_stats
 
-    def calculate_planet_averages(self):
-        """:returns: a dictionary of average applicable values per planet in galaxy"""
+    def planets_in_sector(self, sector):
+        """:returns: a list of all planets in the given sector"""
+        """:param sector: a string corresponding to a sector in the galaxy"""
         raise RuntimeError("not yet implemented")
 
-    def find_planet_by(self, criteria, most_least):
+    def planet_sort(self, planets, criteria, reverse):
         """:returns: the planet with the most or least of a given possible criteria"""
-        """:param: criteria, string chosen from a menu, any value in mission stats, helldiver stats, base stats"""
-        """:param: most_least, bool indicating to return the planet with the highest or lowest given criteria"""
+        """:param planets: the list of planet objects to be sorted"""
+        """:param criteria: string chosen from a menu, any value in mission stats, helldiver stats, base stats"""
+        """:param reverse: bool indicating to return the planet with the highest or lowest given criteria"""
         raise RuntimeError("not yet implemented")
 
-    def search_planet_by_index(self, index):
+    def planet_search_by_name(self, name):
+        """:returns: a planet or list of planets containing the given name in the returned string,
+         works on incomplete names, None if no planets found"""
+        raise RuntimeError("not yet implemented")
+
+    def planet_search_by_index(self, index):
         """:returns: the planet at the given index"""
         """:param: index, the integer index"""
         """:raises: IndexError if index is not valid """
-        if index < self.get_planet_count():
+        if index < len(self._planets_list):
             return self._planets_list[index]
         else:
             raise IndexError
-
-    def search_planet_by_attribute(self, name):
-        """:returns: a list of planets with a name containing the given name"""
-        """:param: name, the string to search for"""
-        planets_with_name = []
-        for i in self._planets_list:
-            if name in i.__str__():
-                planets_with_name.append(i)
-        return planets_with_name

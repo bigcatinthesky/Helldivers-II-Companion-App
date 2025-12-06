@@ -120,3 +120,7 @@ class Planet:
     def get_planet_stats(self):
         """:returns: _planet_stats"""
         return self._planet_stats
+
+    def get_planet_attributes(self):
+        """:returns: _planet_attributes"""
+        return self._planet_attributes
