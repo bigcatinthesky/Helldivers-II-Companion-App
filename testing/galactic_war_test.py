@@ -10,9 +10,11 @@ class TestGalacticWar(unittest.TestCase):
         with open("planets.json", "r") as planets_file:
             planets_json = json.load(planets_file)
             test_galactic_war = GalacticWar(galactic_war_json, planets_json)
+
         """testing base stats"""
         self.assertEqual(708641278, test_galactic_war._galaxy_stats["missions won"])
         self.assertEqual(2264323640041, test_galactic_war._galaxy_stats["mission time"])
+
         """testing helldiver stats"""
         self.assertEqual(88.83, test_galactic_war.calculate_helldiver_stats()["accuracy"])
         self.assertEqual(281107730429, test_galactic_war.calculate_helldiver_stats()["total kills"])
@@ -24,6 +26,7 @@ class TestGalacticWar(unittest.TestCase):
         self.assertEqual(5.00, test_galactic_war.calculate_helldiver_stats()["shots per kill"])
         self.assertEqual(6.03, test_galactic_war.calculate_helldiver_stats()["helldiver lifespan"])
         self.assertEqual(224.39, test_galactic_war.calculate_helldiver_stats()["rounds per helldiver"])
+
         """testing mission averages"""
         helldiver_stats = test_galactic_war.calculate_helldiver_stats()
         self.assertEqual(777314218, test_galactic_war.calculate_mission_stats(helldiver_stats)["total missions"])
@@ -65,12 +68,13 @@ class TestGalacticWar(unittest.TestCase):
         for i in test_galactic_war._planets_list:
             planets.append(i)
         self.assertEqual(planets, test_galactic_war.get_planetary_list())
+
         """planet search test"""
         self.assertEqual(test_galactic_war._planets_list[0], test_galactic_war.search_planet_by_index(0))
         planets_with_new_in_name = [planets[4], planets[20], planets[93]]
-        self.assertEqual(planets_with_new_in_name, test_galactic_war.search_planet_by_name_or_sector("New"))
+        self.assertEqual(planets_with_new_in_name, test_galactic_war.search_planet_by_attribute("New"))
         planets_with_squidward_in_name = []
-        self.assertEqual(planets_with_squidward_in_name, test_galactic_war.search_planet_by_name_or_sector("squidward"))
+        self.assertEqual(planets_with_squidward_in_name, test_galactic_war.search_planet_by_attribute("squidward"))
         self.assertEqual(0, test_galactic_war.get_planet_index(planets[0]))
         null_planet = None
         with self.assertRaises(ValueError):

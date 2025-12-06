@@ -117,10 +117,6 @@ class Planet:
         else:
             raise ValueError
 
-    def get_planet_details(self):
-        """:returns: details, list in planet attributes dictionary"""
-        return self._planet_attributes["details"]
-
     def get_planet_stats(self):
         """:returns: _planet_stats"""
         return self._planet_stats

@@ -159,7 +159,7 @@ class GalacticWar:
         else:
             raise IndexError
 
-    def search_planet_by_name_or_sector(self, name):
+    def search_planet_by_attribute(self, name):
         """:returns: a list of planets with a name containing the given name"""
         """:param: name, the string to search for"""
         planets_with_name = []

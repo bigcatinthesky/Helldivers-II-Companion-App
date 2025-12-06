@@ -5,7 +5,7 @@ from planet import Planet
 class TestPlanet(unittest.TestCase):
 
     def test_planet_super_earth(self):
-        with open("test.json", "r") as galactic_war_file:
+        with open("../Final Project/testing/test.json", "r") as galactic_war_file:
             galactic_war_json = json.load(galactic_war_file)
             test_planet_stats_json = galactic_war_json["planets_stats"][0]
         with open("planets.json", "r") as planets_file:
@@ -15,7 +15,6 @@ class TestPlanet(unittest.TestCase):
         """testing attributes"""
         self.assertEqual("Super Earth", test_planet._planet_attributes["name"])
         self.assertEqual("Sol", test_planet._planet_attributes["sector"])
-        self.assertEqual("normal_temp", test_planet.get_planet_details()["weather"][0])
         """testing base stats"""
         self.assertEqual(16553678, test_planet._planet_stats["missions won"])
         self.assertEqual(51840209730, test_planet._planet_stats["mission time"])
