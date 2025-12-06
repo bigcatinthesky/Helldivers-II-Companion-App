@@ -12,12 +12,9 @@ class Planet:
             "casualties" : json_planet_stats_dict["deaths"],
             "friendly fires" : json_planet_stats_dict["friendlies"]
         }
-        details = {"biome" : json_planet_attributes_dict["biome"], "environmentals" : json_planet_attributes_dict["environmentals"],
-                    "type" : json_planet_attributes_dict["type"], "weather" : json_planet_attributes_dict["weather_effects"]}
         self._planet_attributes = {
             "name": json_planet_attributes_dict["name"],
             "sector": json_planet_attributes_dict["sector"],
-            "details" : details
         }
 
     def __str__(self):

@@ -1,7 +1,7 @@
 from planet import Planet
 
 class GalacticWar:
-    def __init__(self, json_galaxy_stats_dict, json_planets_list):
+    def __init__(self, json_galaxy_stats_dict, json_planets_dict):
         self._galaxy_stats = {
             "missions won": json_galaxy_stats_dict["galaxy_stats"]["missionsWon"],
             "missions lost": json_galaxy_stats_dict["galaxy_stats"]["missionsLost"],
@@ -15,17 +15,23 @@ class GalacticWar:
             "friendly fires": json_galaxy_stats_dict["galaxy_stats"]["friendlies"]
         }
         self._planets_list = []
-        planets_stats = []
+
+
         planet_attributes = []
+        planet_stats = []
+        for i in json_planets_dict:
+            planet_attributes.append(json_planets_dict[i])
         for i in json_galaxy_stats_dict["planets_stats"]:
-            planets_stats.append(i)
-        for i in json_planets_list.values():
-            planet_attributes.append(i)
-        index = 0
-        while index < len(planets_stats):
-            new_planet = Planet(planets_stats[index], planet_attributes[index])
-            self._planets_list.append(new_planet)
-            index += 1
+            planet_stats.append(i)
+        attributes_index = 0
+        while attributes_index != len(planet_attributes):
+            stats_index = 0
+            while stats_index != len(planet_stats):
+                if attributes_index == planet_stats[stats_index]["planetIndex"]:
+                    new_planet = Planet(planet_stats[stats_index], planet_attributes[attributes_index])
+                    self._planets_list.append(new_planet)
+                stats_index += 1
+            attributes_index += 1
 
 
     def format_galaxy_stats(self, helldiver_stats, mission_stats):

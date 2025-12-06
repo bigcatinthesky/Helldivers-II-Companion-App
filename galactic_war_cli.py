@@ -84,7 +84,7 @@ class GalacticWarCLI:
         while do:
             try:
                 print(self.separator+planet_header+self.separator)
-                print("| Return(1) | Display Planet Stats(2) | Display Planet Details(3) |"+self.separator)
+                print("| Return(1) | Display Planet Stats(2) |"+self.separator)
                 r = int(input("command: "))
                 if r == 1:
                     do = False
@@ -98,10 +98,6 @@ class GalacticWarCLI:
                     else:
                         print(self.separator+planet_header)
                         input("no recorded helldiver operations on planet...")
-                elif r == 3:
-                    print(self.separator+planet_header+"\nPlanetary Details:")
-                    print(planet.get_planet_details(),self.separator)
-                    input("enter to continue...")
                 else:
                     input("index out of range...")
             except ValueError:
