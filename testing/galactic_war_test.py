@@ -103,3 +103,5 @@ class TestGalacticWar(unittest.TestCase):
 
         planets = [test_galactic_war._planets_list[0]]
         self.assertEqual(planets, test_galactic_war.planets_in_sector("Sol"))
+
+        self.assertEqual(None, test_galactic_war.planets_in_sector("Squidward"))
