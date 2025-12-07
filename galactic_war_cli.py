@@ -1,13 +1,6 @@
-from galactic_war import GalacticWar
-import galactic_war_api
 
 class GalacticWarCLI:
-    def __init__(self):
-        galactic_war_json = galactic_war_api.request_galactic_war_sum_api()
-        galactic_war_api.save_galactic_war_sum_to_file(galactic_war_json)
-        galactic_war_json = galactic_war_api.read_galactic_war()
-        read_planets = galactic_war_api.read_planets()
-        galactic_war = GalacticWar(galactic_war_json, read_planets)
+    def __init__(self, galactic_war):
         self._galactic_war = galactic_war
         self._galactic_war_stats = self._galactic_war.calculate_helldiver_stats()
         self._galactic_war_mission_stats = self._galactic_war.calculate_mission_stats(self._galactic_war_stats)
@@ -18,7 +11,7 @@ class GalacticWarCLI:
         while do:
             try:
                 print(self.separator+"Galactic War Overview")
-                print("| Quit(1) | Display Galactic War Summary(2) | Search Planets(3) |"+self.separator)
+                print("| Quit(1) | Display Galactic War Summary(2) |  Display Planet List(3) | Sectors(4) |"+self.separator)
                 r = int(input("command: "))
                 if r == 1:
                  print("quitting program...")
@@ -29,33 +22,49 @@ class GalacticWarCLI:
                     print(len(self._galactic_war.get_planetary_list()), "Total Planets"+self.separator)
                     input("press enter to return...")
                 elif r == 3:
-                    self.planet_search_menu()
+                    planets = self._galactic_war.get_planetary_list()
+                    self.display_planet_list(planets)
+                elif r == 4:
+                    print("not yet implemented...")
                 else:
                    input("invalid command...")
-
             except ValueError:
                 input("command must be integer...")
 
+    def display_planet_list(self, planets):
+        do = True
+        while do:
+            try:
+                index = 0
+                print(self.separator + "Planetary List")
+                for i in planets:
+                    print("(", index, ")", i, "\nTotal mission time:", round(i.get_planet_stats()["mission time"] / 60),
+                          "minutes")
+                    index += 1
+                print(self.separator + str(index), "Total Planets")
+                print("| Return(1) | Search Planets(2) | Sort Planets(3) |"+self.separator)
+                r = int(input("command: "))
+                if r == 1:
+                    do = False
+                elif r == 2:
+                    self.planet_search_menu()
+                elif r == 3:
+                    print("not yet implemented...")
+                else:
+                    input("invalid command...")
+            except ValueError:
+                input("command must be and integer...")
 
     def planet_search_menu(self):
         do = True
         while do:
             try:
                 print(self.separator+"Search Planets")
-                print("| Return(1) | Display Planet List(2) | Search By Index(3) | Search By Name(4) |"+self.separator)
+                print("| Return(1) | Search By Index(2) | Search By Name(3) |"+self.separator)
                 r = int(input("command: "))
                 if r == 1:
                     do = False
                 elif r == 2:
-                    planets = self._galactic_war.get_planetary_list()
-                    index = 0
-                    print(self.separator+"Planetary List")
-                    for i in planets:
-                        print("(",index,")", i, "\nTotal mission time:", round(i.get_planet_stats()["mission time"] / 60), "minutes")
-                        index += 1
-                    print(self.separator+str(index),"Total Planets"+self.separator)
-                    input("enter to continue...")
-                elif r == 3:
                     planets = self._galactic_war.get_planetary_list()
                     index = int(input("enter search index: "))
                     if index < len(planets):
@@ -63,9 +72,7 @@ class GalacticWarCLI:
                         self.display_planet_stats(planet)
                     else:
                         input("index out of range...")
-                elif r == 4:
-                    input("not yet implemented...")
-                elif r == 5:
+                elif r == 3:
                     input("not yet implemented...")
                 else:
                     input("invalid command...")
@@ -74,8 +81,8 @@ class GalacticWarCLI:
 
     def display_planet_stats(self, planet):
         planet_header = planet.__str__()
-        print(self.separator+planet_header+self.separator)
-        if planet.get_planet_stats()["mission time"] > 0:
+        if planet.get_planet_stats()["shots fired"] > 0:
+            print(self.separator+planet_header+self.separator)
             print(self.separator+"Planetary Statistics:")
             helldiver_stats = planet.calculate_helldiver_stats()
             mission_stats = planet.calculate_mission_stats(helldiver_stats)

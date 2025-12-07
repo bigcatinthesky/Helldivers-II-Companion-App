@@ -151,14 +151,14 @@ class GalacticWar:
         raise RuntimeError("not yet implemented")
 
     def planet_sort(self, planets, criteria, reverse):
-        """:returns: the planet with the most or least of a given possible criteria"""
+        """:returns: a list of planets sorted by the given criteria, ascending or descending"""
         """:param planets: the list of planet objects to be sorted"""
         """:param criteria: string chosen from a menu, any value in mission stats, helldiver stats, base stats"""
-        """:param reverse: bool indicating to return the planet with the highest or lowest given criteria"""
+        """:param reverse: bool indicating to return an ascending or descending list"""
         raise RuntimeError("not yet implemented")
 
     def planet_search_by_name(self, name):
-        """:returns: a planet or list of planets containing the given name in the returned string,
+        """:returns: list of planet(s) containing the given name in the returned string,
          works on incomplete names, None if no planets found"""
         raise RuntimeError("not yet implemented")
 

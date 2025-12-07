@@ -75,3 +75,31 @@ class TestGalacticWar(unittest.TestCase):
         null_planet = None
         with self.assertRaises(ValueError):
             test_galactic_war.get_planet_index(null_planet)
+
+        planets = [test_galactic_war._planets_list[0]]
+        self.assertEqual(planets, test_galactic_war.planet_search_by_name("Super Earth"))
+        self.assertEqual(planets, test_galactic_war.planet_search_by_name("super earth"))
+        self.assertEqual(planets, test_galactic_war.planet_search_by_name("super"))
+        self.assertEqual(planets, test_galactic_war.planet_search_by_name("earth"))
+
+        planets = [test_galactic_war._planets_list[20], test_galactic_war._planets_list[93]]
+        self.assertEqual(planets, test_galactic_war.planet_search_by_name("New"))
+        self.assertEqual(planets, test_galactic_war.planet_search_by_name("new"))
+
+        self.assertEqual(None, test_galactic_war.planet_search_by_name("Squidward"))
+
+        planets = []
+        for i in test_galactic_war._planets_list:
+            planets.append(i)
+        self.assertEqual(planets.sort(key= lambda x: x.get_planet_stats()["mission time"], reverse=False),
+                         test_galactic_war.planet_sort(planets, lambda x: x.get_planet_stats()["mission time"],
+                                                       False))
+        self.assertEqual(planets.sort(key=lambda x: x.get_planet_stats()["mission time"], reverse=True),
+                         test_galactic_war.planet_sort(planets, lambda x: x.get_planet_stats()["mission time"],
+                                                       True))
+        self.assertEqual(planets.sort(key=lambda x: x.get_planet_stats()["total kills"], reverse=False),
+                         test_galactic_war.planet_sort(planets, lambda x: x.get_planet_stats()["total kills"],
+                                                       False))
+
+        planets = [test_galactic_war._planets_list[0]]
+        self.assertEqual(planets, test_galactic_war.planets_in_sector("Sol"))
