@@ -37,7 +37,7 @@ class GalacticWar:
 
     def add_sector(self, planet):
         if planet.get_planet_attributes()["sector"] not in self._sectors:
-            self._sectors.append(planet)
+            self._sectors.append(planet.get_planet_attributes()["sector"])
 
     def format_galaxy_stats(self, helldiver_stats, mission_stats):
         """:returns: a readable string of all galaxy statistics"""
@@ -146,21 +146,28 @@ class GalacticWar:
         return mission_stats
 
     def planets_in_sector(self, sector):
-        """:returns: a list of all planets in the given sector"""
+        """:returns: a list of all planets in the given sector, if no planets in sector, None"""
         """:param sector: a string corresponding to a sector in the galaxy"""
-        raise RuntimeError("not yet implemented")
-
-    def planet_sort(self, planets, criteria, reverse):
-        """:returns: a list of planets sorted by the given criteria, ascending or descending"""
-        """:param planets: the list of planet objects to be sorted"""
-        """:param criteria: string chosen from a menu, any value in mission stats, helldiver stats, base stats"""
-        """:param reverse: bool indicating to return an ascending or descending list"""
-        raise RuntimeError("not yet implemented")
+        planets = []
+        for i in self._planets_list:
+            if i.get_planet_attributes()["sector"] == sector:
+                planets.append(i)
+        if len(planets) > 0:
+            return planets
+        else:
+            return None
 
     def planet_search_by_name(self, name):
         """:returns: list of planet(s) containing the given name in the returned string,
          works on incomplete names, None if no planets found"""
-        raise RuntimeError("not yet implemented")
+        planets = []
+        for i in self._planets_list:
+            if name in i.__str__():
+                planets.append(i)
+        if len(planets) > 0:
+            return planets
+        else:
+            return None
 
     def planet_search_by_index(self, index):
         """:returns: the planet at the given index"""
