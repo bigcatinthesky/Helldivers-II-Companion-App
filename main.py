@@ -1,6 +1,6 @@
 import galactic_war_api
 from galactic_war import GalacticWar
-from galactic_war_cli import GalacticWarCLI
+from interface.galactic_war_cli import GalacticWarCLI
 
 def main():
     galactic_war = new_galactic_war()
