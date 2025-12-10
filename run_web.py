@@ -71,7 +71,6 @@ def search():
             return render_template('error.html', message="Planet not found!")
     elif search_type == "sector":
         query = query.title()
-        print(query)
         target_sector = galactic_war.sector_name_search(query)
         if target_sector:
             planets = galactic_war.get_planets(target_sector)
@@ -90,6 +89,7 @@ def planet():
     target_planet = request.args.get("target_planet", "")
     planet_name = request.args.get("planet_name", "")
     planet_sector = request.args.get("planet_sector", "")
+
     if target_planet != "" and planet_name != "" and planet_sector != "":
         return render_template('display.html', data=target_planet, name=planet_name, sector=planet_sector)
     else:
