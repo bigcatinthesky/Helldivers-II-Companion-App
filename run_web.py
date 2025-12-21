@@ -89,7 +89,6 @@ def planet():
     target_planet = request.args.get("target_planet", "")
     planet_name = request.args.get("planet_name", "")
     planet_sector = request.args.get("planet_sector", "")
-
     if target_planet != "" and planet_name != "" and planet_sector != "":
         return render_template('display.html', data=target_planet, name=planet_name, sector=planet_sector)
     else:

@@ -90,6 +90,7 @@ class GalacticWarCLI:
                         self.display_planet_list(planets)
                     else:
                         input("no planets found, enter to continue...")
+                        do = False
                 else:
                     input("invalid command...")
             except ValueError:

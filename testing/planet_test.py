@@ -5,7 +5,7 @@ from planet import Planet
 class TestPlanet(unittest.TestCase):
 
     def test_planet_super_earth(self):
-        with open("../Final Project/testing/test.json", "r") as galactic_war_file:
+        with open("../HD2 App/testing/test.json", "r") as galactic_war_file:
             galactic_war_json = json.load(galactic_war_file)
             test_planet_stats_json = galactic_war_json["planets_stats"][0]
         with open("planets.json", "r") as planets_file:
