@@ -1,4 +1,4 @@
-import galactic_war_api
+import galactic_war_api as galactic_war_api
 
 class GalacticWarWeb:
     def __init__(self, galactic_war):

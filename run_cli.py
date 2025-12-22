@@ -1,4 +1,4 @@
-import galactic_war_api
+import galactic_war_api as galactic_war_api
 from galactic_war_cli import GalacticWarCLI
 
 def main():
