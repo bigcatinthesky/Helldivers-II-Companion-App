@@ -1,4 +1,4 @@
-
+"""file deprecated"""
 class GalacticWarCLI:
     def __init__(self, galactic_war):
         self._galactic_war = galactic_war

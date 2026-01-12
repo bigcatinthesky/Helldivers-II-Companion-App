@@ -1,3 +1,4 @@
+"""run this file to launch the site locally"""
 from flask import Flask, render_template, request, session, redirect, url_for
 from flask_session import Session
 import galactic_war_web as galactic_war_web

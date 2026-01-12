@@ -1,2 +1,2 @@
-/.ignore/
-/.flask_session/
+*ignore
+*flask_session/
