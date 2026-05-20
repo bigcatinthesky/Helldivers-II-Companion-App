@@ -10,7 +10,7 @@ This project depends directly on the response, flask, flask_session, unittest, a
 It can be ran on any modern computer with a network connection, the Python language, and a compiler.
 
 It is intended for a user to execute the code locally by running the "run_web.py" file.
-Then click the link in the terminal to access the local webpage.
+Then click the link in the terminal to access the local browser app.
 
 The "run_cli.py" file is deprecated and should not be used as it is missing some functionality.
 This project is not currently suitable for mass deployment.
