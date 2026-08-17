@@ -11,6 +11,7 @@ Session(app)
 
 @app.route('/')
 def main():
+    DeprecationWarning("Web app depricated, use cli")
     """home page"""
     session.clear()
     galactic_war = galactic_war_web.make_galactic_war()
