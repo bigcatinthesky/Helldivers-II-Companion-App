@@ -1,3 +1,10 @@
 # Created by venv; see https://docs.python.org/3/library/venv.html
-*
-*galactic_war.json
+*__pycache__
+*.venv
+*.vscode
+*bin
+*flask_session
+*include
+*lib
+*lib64
+*pyvenv.cfg
